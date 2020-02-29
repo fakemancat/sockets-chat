@@ -1,0 +1,12 @@
+{
+  "name": "sockets-chat",
+  "version": "1.0.0",
+  "description": "Чат на сокетах для chenk.ru",
+  "repository": "https://github.com/fakemancat/sockets-chat.git",
+  "author": {
+    "email": "bryuhanovdima@yandex.ru",
+    "name": "Fakeman Cat",
+    "url": "https://fakeman-cat.tk"
+  },
+  "license": "MIT"
+}

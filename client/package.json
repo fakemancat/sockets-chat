@@ -1,0 +1,12 @@
+{
+    "name": "sockets-chat-client",
+    "version": "1.0.0",
+    "description": "Чат на сокетах для chenk.ru",
+    "author": {
+      "email": "bryuhanovdima@yandex.ru",
+      "name": "Fakeman Cat",
+      "url": "https://fakeman-cat.tk"
+    },
+    "license": "MIT"
+  }
+  

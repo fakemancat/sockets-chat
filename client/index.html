@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="../server/node_modules/socket.io-client/dist/socket.io.js"></script>
+    <title>Chat bot</title>
+</head>
+<body>
+
+    <div class="chat">
+        <div class="chat-header">
+            <div class="chat-header_label">
+                <img src="assets/chat.svg" class="chat-header__icon">
+                <span>Онлайн-консультант</span>
+            </div>
+            
+            <img src="assets/close-cross.svg" class="chat-header__close">
+        </div>
+
+        <div class="chat-body">
+            <div class="chat-body_messages" id="messages">
+                
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <input id="message_text" type="text" class="chat-input_text" placeholder="Введите сообщение" onkeypress="sendMessage(event);">
+            <img src="assets/send.svg" class="chat-input_send" onclick="sendMessage();">
+        </div>
+    </div>
+
+    <script>
+        const socket = io('http://192.168.137.1:3000');
+        let messages = document.getElementById('messages');
+
+        function sendMessage(event = null) {
+            if (event && event.keyCode !== 13)
+                return;
+
+            const text = document.getElementById('message_text').value.trim();
+
+            if (!text) return;
+            
+            messages.innerHTML += `
+                <span class="chat-body_message chat-body_user-message">
+                    ${text}
+                </span>
+            `;
+
+            messages.scrollTop = messages.scrollHeight;
+
+            socket.emit('message', text);
+            document.getElementById('message_text').value = '';
+        }
+
+        socket.on('message', (data) => {
+            messages.innerHTML += `
+                <span class="chat-body_message chat-body_interlocutor-message">
+                    ${data}
+                </span>
+            `;
+
+            messages.scrollTop = messages.scrollHeight;
+        });
+    </script>
+</body>
+</html>
