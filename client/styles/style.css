@@ -2,6 +2,14 @@
     box-sizing: border-box;
 }
 
+img {
+    user-select: none;
+    pointer-events: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
 html, body {
     margin: 0px;
     padding: 0px;
@@ -14,7 +22,7 @@ html, body {
 .chat-open {
     width: 50px;
     height: 50px;
-    background-color: #FFC500;
+    background-color: #283593;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -23,10 +31,15 @@ html, body {
     cursor: pointer;
     z-index: 10;
     transition: all .3s ease-in-out;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.5);
 
     margin: 5px;
     margin-top: 348px;
     margin-left: 228px;
+}
+
+.chat-open:hover {
+    background-color: #4752A2;
 }
 
 .chat-open_icon {
@@ -55,10 +68,12 @@ html, body {
 
 /* Chat header */
 .chat-header {
+    color: #fff;
     width: 100%;
-    background-color: #FFC500;
+    background-color: #4752A2;
     border-radius: 10px 10px 0px 0px;
     padding: 5px;
+    margin-bottom: 5px;
 
     display: flex;
     align-items: center;
@@ -84,6 +99,7 @@ html, body {
     height: 10px;
     cursor: pointer;
     margin-right: 10px;
+    pointer-events: unset;
 }
 
 /* Chat body */
@@ -100,12 +116,14 @@ html, body {
 }
 
 .chat-body_message-time {
-    color: #000;
-    font-size: 11px;
+    color: #888;
+    font-size: 9px;
 }
+
 
 .chat-body_message-in {
     align-self: flex-start;
+    flex-direction: column;
     align-items: center;
     display: flex;
     margin-left: 5px;
@@ -113,15 +131,20 @@ html, body {
 }
 
 .chat-body_message-in > .chat-body_message-text {
-    background-color: #8106A9;
-    border-radius: 5px;
+    background-color: #4752A2;
+    border-radius: 15px 15px 15px 0px;
     margin-right: 5px;
-    padding: 5px;
+    padding: 7px;
     color: #fff;
+}
+
+.chat-body_message-in > .chat-body_message-time {
+    align-self: flex-start;
 }
 
 .chat-body_message-out {
     align-self: flex-end;
+    flex-direction: column;
     align-items: center;
     display: flex;
     margin-right: 5px;
@@ -129,11 +152,15 @@ html, body {
 }
 
 .chat-body_message-out > .chat-body_message-text {
-    background-color: #3C9DD0;
-    border-radius: 5px;
+    background-color: #7983D1;
+    border-radius: 15px 15px 0px 15px;
     margin-left: 5px;
-    padding: 5px;
+    padding: 7px;
     color: #fff;
+}
+
+.chat-body_message-out > .chat-body_message-time {
+    align-self: flex-end;
 }
 
 /* Chat-input */

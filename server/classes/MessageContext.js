@@ -1,17 +1,20 @@
 module.exports = class MessageContext {
     constructor(socket, text) {
-        const date = new Date();
-        
         this.text = text;
         this.socket = socket;
-        this.date = `${date.getHours()}:${date.getMinutes()}`;
+        
+        // Date
+        const date = new Date();
+        const minutes = String(date.getMinutes());
+        this.date = `${date.getHours()}:${minutes.length === 1 ? `0${minutes}` : minutes}`;
     }
 
     resend() {
         this.socket.emit('message', {
             isOut: true,
             text: this.text,
-            date: this.date
+            date: this.date,
+            randomId: Math.random()
         });
     }
 
@@ -19,7 +22,8 @@ module.exports = class MessageContext {
         this.socket.emit('message', {
             isOut: false,
             text: text,
-            date: this.date
+            date: this.date,
+            randomId: Math.random()
         });
     }
 };
