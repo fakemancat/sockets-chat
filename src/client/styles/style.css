@@ -157,6 +157,7 @@ html, body {
     margin-left: 5px;
     padding: 7px;
     color: #fff;
+    word-wrap: anywhere;
 }
 
 .chat-body_message-out > .chat-body_message-time {

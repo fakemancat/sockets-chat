@@ -1,11 +1,12 @@
 module.exports = class MessageContext {
     constructor(socket, text) {
-        this.text = text;
+        this.text = text.trim();
         this.socket = socket;
         
         // Date
-        const date = new Date();
-        this.date = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+        // const date = new Date();
+        // this.date = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+        this.date = Date.now();
     }
 
     resend() {

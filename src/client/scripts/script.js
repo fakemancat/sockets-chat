@@ -1,6 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 
+let clientID = +localStorage.getItem('clientID');
+
+if (!clientID) {
+    clientID = Math.random();
+    localStorage.setItem('clientID', String(clientID));
+}
+
 let scrollElement = document.getElementById('chat-body');
 
 function openChat() {
@@ -23,11 +30,16 @@ function last(array) {
     return array[array.length - 1];
 }
 
+function formatDate(date) {
+    date = new Date(date);
+    return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+}
+
 function addMessage(message) {
     document.getElementById('messages').innerHTML += `
         <div class="chat-body_message-${message.isOut ? 'out' : 'in'}">
-            <span class="chat-body_message-text">${message.text}</span>
-            <span class="chat-body_message-time">${message.date}</span>
+            <span class="chat-body_message-text">${message.text.replace(/\n/g, '</br>')}</span>
+            <span class="chat-body_message-time">${formatDate(message.date)}</span>
         </div>
     `;
 }
@@ -50,7 +62,7 @@ function sendMessage(event = null) {
 
     if (!text) return;
     
-    socket.emit('message', text);
+    socket.emit('message', { text, clientID });
     document.getElementById('message_text').value = '';
 }
 
@@ -68,3 +80,5 @@ socket.on('message', (data) => {
 
     scrollElement.scrollTop = scrollElement.scrollHeight;
 });
+
+console.log('ClientID:', clientID);
