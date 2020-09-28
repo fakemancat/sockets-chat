@@ -40,7 +40,7 @@ if (localMessages) {
     }
 }
 
-const socket = io('http://192.168.137.1:3000');
+const socket = io();
 
 function sendMessage(event = null) {
     if (event && event.keyCode !== 13)

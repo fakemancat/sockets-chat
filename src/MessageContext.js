@@ -5,8 +5,7 @@ module.exports = class MessageContext {
         
         // Date
         const date = new Date();
-        const minutes = String(date.getMinutes());
-        this.date = `${date.getHours()}:${minutes.length === 1 ? `0${minutes}` : minutes}`;
+        this.date = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
     }
 
     resend() {
